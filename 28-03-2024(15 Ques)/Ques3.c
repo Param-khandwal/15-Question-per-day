@@ -1,28 +1,31 @@
 
+
 #include <stdio.h>
+
+int sum(int num)
+{
+    int sum1 = 0;
+    for (int i = 1; i <= num; i++)
+    {
+        sum1 += i;
+    }
+    return sum1;
+}
+
+int sum2(int num){
+
+    return (num*(num+1))/2;
+}
+
 int main()
 {
-   
- double sum=0.0;double num;
- int count=0;
 
- printf("Enter  numbers type -1 to stop: ");
- 
+    int num;
+    printf("enter the num\n");
+    scanf("%d", &num);
 
-while(scanf("%lf",&num)==1 && num>=-1){
-if(num>0){
-    sum+=num;
-    count++;
-}
-//printf("Enter a number -1 to stop\n");
-}
+    printf("%d\n", sum(num));
+    printf("%d\n",sum2(num));
 
-if(count>0){
-    printf("Average \n",sum/count);
-}
-else{
-    printf("No valid inputs \n");
-}
-
-return 0;
+    return 0;
 }

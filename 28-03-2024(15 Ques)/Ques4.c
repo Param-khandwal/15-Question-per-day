@@ -1,29 +1,97 @@
+
 #include <stdio.h>
-
-int sum(int num)
-{
-    int sum1 = 0;
-    for (int i = 1; i <= num; i++)
-    {
-        sum1 += i;
-    }
-    return sum1;
-}
-
-int sum2(int num){
-
-    return (num*(num+1))/2;
-}
-
 int main()
 {
 
-    int num;
-    printf("enter the num\n");
-    scanf("%d", &num);
+    int num1, num2, num3;
+    printf("Enter the first number");
+    scanf("%d", &num1);
+    printf("Enter the second number");
+    scanf("%d", &num2);
+    printf("Enter the third number");
+    scanf("%d", &num3);
 
-    printf("%d\n", sum(num));
-    printf("%d\n",sum2(num));
+
+
+    if (num1 > num2 && num1 > num3)
+    {
+        printf("%d is greater \n", num1);
+    }
+    else if (num2 > num1 && num2 > num3) 
+    {
+        printf("%d is greater \n", num2);
+    }
+    else if (num3 > num2 && num3 > num1) 
+    {
+        printf("%d is greater \n", num3);
+    }
+    else
+    {
+        printf("All are equal");
+    }
+
+    if(num1 < num2 && num1 < num3)
+    {
+        printf("%d is smaller \n", num1);
+    }
+    else if (num2 < num1 && num2 < num3)
+    {
+        printf("%d is smaller \n", num2);
+    }
+    else if (num3 < num2 && num3 < num1)
+    {
+        printf("%d issmaller \n", num3);
+    }
+    else
+    {
+        printf("All are equal");
+    }
+
+
 
     return 0;
 }
+ //////////other method
+
+/*
+#include <stdio.h>
+
+int main()
+{
+    int num1, num2, num3;
+    printf("Enter the first number: ");
+    scanf("%d", &num1);
+    printf("Enter the second number: ");
+    scanf("%d", &num2);
+    printf("Enter the third number: ");
+    scanf("%d", &num3);
+
+    // Check for the largest and smallest numbers
+    if (num1 > num2)
+    {
+        if (num1 > num3)
+        {
+            printf("%d is the largest and %d is the smallest \n", num1, (num2 > num3) ? num2 : num3);
+        }
+        else
+        {
+            printf("%d is the largest and %d is the smallest \n", num3, (num1 < num2) ? num1 : num2);
+        }
+    }
+    else
+    {
+        if (num2 > num3)
+        {
+            printf("%d is the largest and %d is the smallest \n", num2, (num1 > num3) ? num1 : num3);
+        }
+        else
+        {
+            printf("%d is the largest and %d is the smallest \n", num3, (num1 < num2) ? num1 : num2);
+        }
+    }
+
+    return 0;
+}
+
+
+*/
