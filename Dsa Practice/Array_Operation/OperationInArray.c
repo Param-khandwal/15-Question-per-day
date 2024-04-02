@@ -1,25 +1,51 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-// Traversal array
-void display(int arr[], int size)
+
+struct myArray
 {
-    for (int i = 0; i < size; i++)
+    int total_size; // total size of the array
+    int used_size;  // used size of the array
+    int *ptr;
+};
+
+
+void createArr(struct myArray *a, int tsize, int usize)
+{
+    a->total_size = tsize;
+    a->used_size = usize;
+    a->ptr = (int *)malloc(tsize * sizeof(int));
+} // creation of array using malloc
+
+
+void show(struct myArray *a)
+{
+
+    for (int i = 0; i < a->used_size; i++)
     {
-        printf("%d\t", arr[i]);
+        printf("%d", (a->ptr[i]));
     }
-}
+} // end of the display function
 
-// Insertion array
 
-int Insert(int arr[], int size, int element, int capacity, int index)
+void inputValue(struct myArray *a)
 {
+    int n;
+    for (int i = 0; i < a->used_size; i++)
+    {
+        printf("Enter the element %d ", i);
+        scanf("%d", &n);
+        (a->ptr)[i] = n;
+    }
 }
 
 int main()
 {
-    int arr[] = {1, 2, 3, 4, 5, 6, 7};
-    int size = sizeof(arr) / sizeof(arr[0]);
+   struct myArray arr;
+   createArr(&arr,5,3);
+   printf("The elements are:\n");
+   inputValue(&arr);
+   show( &arr );
+   return 0;
 
-    display(arr, size);
 }
