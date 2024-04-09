@@ -63,11 +63,11 @@ void display()
 {
     if (que.front == -1)
     {
-        printf("Queues is empty");
+        printf("Queues is empty\n");
     }
     else
     {
-        printf("Queue elements");
+        printf("Queue elements\n");
         for (int i = que.front + 1; i <= que.rear; i++)
         {
             printf("%d", que.arr[i]);

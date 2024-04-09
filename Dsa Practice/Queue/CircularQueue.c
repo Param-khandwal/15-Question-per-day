@@ -5,7 +5,8 @@
 
 struct CircularQueue {
     int items[MAX_SIZE];
-    int front, rear;
+    int front;
+    int rear;
     int size;
 };
 
@@ -20,6 +21,7 @@ struct CircularQueue* createQueue() {
 int isFull(struct CircularQueue* queue) {
     return (queue->front == 0 && queue->rear == MAX_SIZE - 1) || (queue->front == queue->rear + 1);
 }
+
 
 int isEmpty(struct CircularQueue* queue) {
     return queue->front == -1;
