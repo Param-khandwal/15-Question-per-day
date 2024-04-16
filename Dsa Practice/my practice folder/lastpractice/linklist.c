@@ -14,8 +14,7 @@ void insertAtBeg(int ele)
     struct node *temp;
     temp = (struct node *)malloc(sizeof(struct node));
     temp->data = ele;
-    temp->next = NULL;
-    start = temp->next;
+    temp->next = start; // Corrected assignment
     start = temp;
 }
 
@@ -40,6 +39,7 @@ void insertAtEnd(int ele)
         curr->next = temp;
     }
 }
+
 void insertAfter(int ele, int search)
 {
     struct node *temp, *curr;
@@ -59,15 +59,18 @@ void insertAfter(int ele, int search)
         }
         else
         {
-            printf("Element bot found");
+            printf("Element not found");
+            free(temp); // Free the allocated memory
         }
     }
     else
     {
         printf("list is empty");
+        free(temp); // Free the allocated memory
     }
 }
-void insertbefore(int ele, int search)
+
+void insertBefore(int ele, int search)
 {
     struct node *temp, *curr;
     temp = (struct node *)malloc(sizeof(struct node));
@@ -83,11 +86,11 @@ void insertbefore(int ele, int search)
         else
         {
             curr = start;
-            while (curr != NULL && curr->next->data != search)
+            while (curr->next != NULL && curr->next->data != search)
             {
                 curr = curr->next;
             }
-            if (curr != NULL)
+            if (curr->next != NULL)
             {
                 temp->next = curr->next;
                 curr->next = temp;
@@ -95,18 +98,19 @@ void insertbefore(int ele, int search)
             else
             {
                 printf("element not found");
+                free(temp); // Free the allocated memory
             }
         }
     }
     else
     {
         printf("list is empty");
+        free(temp); // Free the allocated memory
     }
 }
 
-int deletFirst()
+int deleteFirst()
 {
-
     int x = -999;
     struct node *temp;
     if (start != NULL)
@@ -115,14 +119,15 @@ int deletFirst()
         x = temp->data;
         start = temp->next;
         free(temp);
-        temp = NULL;
     }
     else
     {
         printf("list is empty");
     }
+    return x;
 }
-int deletLast()
+
+int deleteLast()
 {
     int x = -999;
     struct node *temp, *curr;
@@ -150,10 +155,11 @@ int deletLast()
     }
     else
     {
-        printf("LIst is empty");
+        printf("List is empty");
     }
     return x;
 }
+
 int deletePos(int search)
 {
     int x = -999;
@@ -167,14 +173,13 @@ int deletePos(int search)
             start = temp->next;
             x = temp->data;
             free(temp);
-            temp = NULL;
         }
         else
         {
             curr = start;
             while (curr->next != NULL && curr->next->data != search)
             {
-                curr = curr->next = NULL;
+                curr = curr->next;
             }
             if (curr->next != NULL)
             {
@@ -182,13 +187,16 @@ int deletePos(int search)
                 curr->next = temp->next;
                 x = temp->data;
                 free(temp);
-                temp = NULL;
+            }
+            else
+            {
+                printf("Element not found");
             }
         }
     }
     else
     {
-        printf("Element not found");
+        printf("List is empty");
     }
     return x;
 }
@@ -231,9 +239,9 @@ void funcf(struct node *curr)
         printf("%d\t", curr->data);
     }
 }
+
 void reverse()
 {
-
     struct node *temp, *rev;
     rev = NULL;
     while (start != NULL)
@@ -248,17 +256,13 @@ void reverse()
 
 int main()
 {
-
     start = NULL;
     insertAtBeg(45);
-    // insertAfter(5, 45);
     insertAtEnd(45);
     insertAtEnd(15);
     insertAtEnd(25);
     insertAtEnd(65);
-
-    // deletLast();
-    // deletePos(65);
+    deletePos(65);
 
     displayFor();
     displayBack();
